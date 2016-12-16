@@ -32,7 +32,7 @@ class Circe {
   }
 
   /**
-   * load routers
+   * Load routers
    *
    * @param {String|Router} arg
    * @returns instance
@@ -59,7 +59,7 @@ class Circe {
   }
 
   /**
-   * pass variables into app.context
+   * Pass variables into app.context
    *
    * @param {Object} variables
    * @param {String} prefix
@@ -87,7 +87,15 @@ delegates(Circe.prototype, 'app')
   .method('use')
   .method('toJSON')
   .method('inspect')
+  .method('on')
+  .access('proxy')
+  .access('middleware')
+  .access('subdomainOffset')
+  .access('env')
   .access('context')
+  .access('request')
+  .access('response')
+  .access('keys')
 
 Circe.Koa = Koa
 Circe.Router = Router

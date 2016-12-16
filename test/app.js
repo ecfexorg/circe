@@ -20,11 +20,20 @@ describe('Circe', function () {
     const circe = new Circe()
     circe.context.a = '1'
     circe.context.b = '2'
-    expect(circe.app.context.a).to.equal('1')
-    expect(circe.app.context.b).to.equal('2')
+    circe.keys = ['secret']
     expect(circe.use).to.be.a('function')
     expect(circe.toJSON).to.be.a('function')
     expect(circe.inspect).to.be.a('function')
+    expect(circe.on).to.be.a('function')
+    expect(circe.proxy).to.equal(circe.app.proxy)
+    expect(circe.middleware).to.equal(circe.app.middleware)
+    expect(circe.subdomainOffset).to.equal(circe.app.subdomainOffset)
+    expect(circe.env).to.equal(circe.app.env)
+    expect(circe.app.context.a).to.equal('1')
+    expect(circe.app.context.b).to.equal('2')
+    expect(circe.request).to.equal(circe.app.request)
+    expect(circe.response).to.equal(circe.app.response)
+    expect(circe.keys).to.equal(circe.app.keys)
     done()
   })
 
