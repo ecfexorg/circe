@@ -1,6 +1,7 @@
 const http = require('http')
 const Koa = require('koa')
 const Router = require('koa-router')
+const delegates = require('delegates')
 
 class Circe {
   /**
@@ -25,6 +26,12 @@ class Circe {
     this.server.listen.apply(this.server, arguments)
   }
 }
+
+delegates(Circe.prototype, 'app')
+  .method('use')
+  .method('toJSON')
+  .method('inspect')
+  .access('context')
 
 Circe.Koa = Koa
 Circe.Router = Router
