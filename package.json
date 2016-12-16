@@ -1,0 +1,29 @@
+{
+  "name": "circe",
+  "version": "1.0.0",
+  "description": "> A framework based on Koa v2.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.oschina.net/hwhao/circe.git"
+  },
+  "keywords": [
+    "node",
+    "koa",
+    "framework"
+  ],
+  "author": "hwhao",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1"
+  }
+}
