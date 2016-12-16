@@ -27,4 +27,48 @@ describe('Circe', function () {
     expect(circe.inspect).to.be.a('function')
     done()
   })
+
+  it('circe.route(Router)', function (done) {
+    const circe = new Circe()
+    const router = new Circe.Router()
+    circe.route(router)
+    done()
+  })
+
+  it('circe.route(String)', function (done) {
+    const circe = new Circe()
+    circe.route('./apis')
+    done()
+  })
+
+  it('circe.inject(Object, String)', function (done) {
+    const circe = new Circe()
+
+    circe.inject({a: 1, b: 2})
+    expect(circe.context.a).to.equal(1)
+    expect(circe.context.b).to.equal(2)
+
+    circe.inject({a: 1, b: 2}, '$')
+    expect(circe.context.$a).to.equal(1)
+    expect(circe.context.$b).to.equal(2)
+
+    circe.inject({a: 1, b: 2}, 'foo.bar.')
+    expect(circe.context.foo.bar.a).to.equal(1)
+    expect(circe.context.foo.bar.b).to.equal(2)
+
+    circe.inject({a: 1, b: 2}, 'foo.bar.$')
+    expect(circe.context.foo.bar.$a).to.equal(1)
+    expect(circe.context.foo.bar.$b).to.equal(2)
+    done()
+  })
+
+  it('circe.inject(name, value)', function (done) {
+    const circe = new Circe()
+
+    circe.inject('a', 1)
+    circe.inject('b', 2)
+    expect(circe.context.a).to.equal(1)
+    expect(circe.context.b).to.equal(2)
+    done()
+  })
 })
