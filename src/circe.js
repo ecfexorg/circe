@@ -1,12 +1,14 @@
 const http = require('http')
 const path = require('path')
 
-const Koa = require('koa')
-const Router = require('koa-router')
 const delegates = require('delegates')
 const requireDir = require('require-dir')
 const debug = require('debug')('circe:application')
 const _ = require('lodash')
+
+const Koa = require('koa')
+const Router = require('koa-router')
+const body = require('./middlewares/body')
 
 class Circe {
   /**
@@ -28,7 +30,7 @@ class Circe {
    * @api public
    */
   listen (port, callback) {
-    this.server.listen.apply(this.server, arguments)
+    return this.server.listen.apply(this.server, arguments)
   }
 
   /**
@@ -99,5 +101,6 @@ delegates(Circe.prototype, 'app')
 
 Circe.Koa = Koa
 Circe.Router = Router
+Circe.body = body
 
 module.exports = Circe
