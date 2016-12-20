@@ -8,7 +8,7 @@ const _ = require('lodash')
 
 const Koa = require('koa')
 const Router = require('koa-router')
-const body = require('./middlewares/body')
+const bodyParser = require('./middlewares/bodyParser')
 
 class Circe {
   /**
@@ -51,8 +51,10 @@ class Circe {
       const routers = requireDir(apiDir)
       for (let key in routers) {
         let router = routers[key]
-        this.use(router.routes())
-        this.use(router.allowedMethods())
+        if (router instanceof Router) {
+          this.use(router.routes())
+          this.use(router.allowedMethods())
+        }
       }
     } else {
       throw new Error('Can not load routes from: ' + arg)
@@ -101,6 +103,8 @@ delegates(Circe.prototype, 'app')
 
 Circe.Koa = Koa
 Circe.Router = Router
+Circe.bodyParser = bodyParser
 Circe.body = body
+Circe.prototype.Circe = Circe
 
 module.exports = Circe

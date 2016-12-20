@@ -1,9 +1,9 @@
 const request = require('supertest')
 // const expect = require('chai').expect
-const Circe = require('../../../src/circe')
+const Circe = require('../../circe')
 
 const circe = new Circe()
-circe.use(Circe.body())
+circe.use(Circe.bodyParser())
 circe.use(function (ctx) {
   ctx.body = ctx.request.body
 })
