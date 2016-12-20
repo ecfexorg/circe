@@ -3,7 +3,7 @@
 ## 使用方法
 
 ```javascript
-const Circe = require('circe)
+const Circe = require('circe')
 const circe = new Circe()
 
 circe.use(Circe.bodyParser())
