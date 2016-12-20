@@ -9,6 +9,7 @@ const _ = require('lodash')
 const Koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('./middlewares/bodyParser')
+const checker = require('./middlewares/checker')
 
 class Circe {
   /**
@@ -104,7 +105,7 @@ delegates(Circe.prototype, 'app')
 Circe.Koa = Koa
 Circe.Router = Router
 Circe.bodyParser = bodyParser
-Circe.body = body
+Circe.checker = checker
 Circe.prototype.Circe = Circe
 
 module.exports = Circe
