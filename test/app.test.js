@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const Circe = require('../src/circe.js')
+const Circe = require('./circe')
 const Koa = require('koa')
 const http = require('http')
 
@@ -9,6 +9,7 @@ describe('Circe', function () {
     circe.listen(8080, (err) => {
       if (err) return done(err)
       expect(circe).to.be.instanceof(Circe)
+      expect(circe.Circe).to.equal(Circe)
       expect(circe.app).to.be.instanceof(Koa)
       expect(circe.server).to.be.instanceof(http.Server)
       expect(circe.server.listening).to.be.true
