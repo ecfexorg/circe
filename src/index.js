@@ -7,6 +7,7 @@ const bodyParser = require('./middlewares/bodyParser')
 const checker = require('./middlewares/checker')
 const jwt = require('./middlewares/jwt')
 const unless = require('./middlewares/unless')
+const cors = require('./middlewares/cors')
 
 Circe.prototype.Circe = Circe
 Circe.__parentDir = path.dirname(module.parent.filename)
@@ -16,5 +17,6 @@ Circe.bodyParser = bodyParser
 Circe.checker = checker
 Circe.jwt = jwt
 Circe.unless = unless
+Circe.cors = cors
 
 module.exports = Circe

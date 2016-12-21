@@ -141,6 +141,8 @@ circe.use(asynct (ctx, next) => {
 - [Circe.bodyParser](./src/middlewares/bodyParser/README.md) body解析器
 - [Circe.checker](./src/middlewares/checker/README.md) 参数验证器
 - [Circe.jwt](./src/middlewares/jwt/README.md) jwt验证
+- [Circe.unless](./src/middlewares/unless/README.md) 中间件过滤
+- [Circe.cors](./src/middlewares/cors/README.md) 跨域请求
 
 ### 特性五：常用工具库
 
