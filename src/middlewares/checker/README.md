@@ -116,3 +116,5 @@ Validator.addMethod('myMethod', function (tip) {
   return this
 })
 ```
+
+inspired by [koa-bouncer](https://github.com/danneu/koa-bouncer/tree/next)

@@ -28,3 +28,5 @@ circe.use(async function (ctx, next) {
 ### multipart 是否开启multipart，默认为`false`
 
 ### formidable formidable参数，开启multipart才有效，默认为`{}`
+
+inspired by [koa-body](https://github.com/dlau/koa-body/tree/koa2)
