@@ -30,12 +30,12 @@ module.exports = exports = {
     this._optional = true
     return this
   },
-  'defaultTo' (defaultVal) {
-    if (_.isUndefined(this.val)) this.val = defaultVal
-    return this
-  },
   'required' (tip) {
     this.throwIf(_.isUndefined(this.val), tip || this.key + ' is required')
+    return this
+  },
+  'defaultTo' (defaultVal) {
+    if (_.isUndefined(this.val)) this.val = defaultVal
     return this
   },
   'eq' (otherVal, tip) {
@@ -47,26 +47,29 @@ module.exports = exports = {
     return this
   },
   // array /////////////////////////////////
-  'toArray' (tip) {
+  'toArray' () {
     this.defaultTo([])
     this.val = _.isArray(this.val) ? this.val : [this.val]
     return this
   },
   'in' (array, tip) {
+    assert(_.isArray(array))
     this.throwIfNot(array.includes(this.val), tip || 'the value of ' + this.key + ' is not supported')
     return this
   },
   'notIn' (array, tip) {
+    assert(_.isArray(array))
     this.throwIf(array.includes(this.val), tip || 'the value of ' + this.key + ' is not supported')
-    return this
-  },
-  'inRange' (min, max, tip) {
-    this.throwIfNot(_.inRange(this.val, min, max), tip)
     return this
   },
   'uniq' () {
     assert(_.isArray(this.val))
     this.val = _.uniq(this.val)
+    return this
+  },
+  'isLength' (min, max, tip) {
+    assert(_.isArray(this.val))
+    this.throwIfNot(_.inRange(this.val.length, min, max), tip)
     return this
   },
   // number /////////////////////////////////
@@ -93,6 +96,10 @@ module.exports = exports = {
   },
   'lte' (otherVal, tip) {
     this.throwIfNot(_.lte(this.val, otherVal))
+    return this
+  },
+  'inRange' (min, max, tip) {
+    this.throwIfNot(_.inRange(this.val, min, max), tip)
     return this
   },
   // string /////////////////////////////////
