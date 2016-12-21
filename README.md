@@ -140,6 +140,7 @@ circe.use(asynct (ctx, next) => {
 - [Circe.Router](https://github.com/alexmingoia/koa-router/tree/master) 引用koa-router@7
 - [Circe.bodyParser](./src/middlewares/bodyParser/README.md) body解析器
 - [Circe.checker](./src/middlewares/checker/README.md) 参数验证器
+- [Circe.jwt](./src/middlewares/jwt/README.md) jwt验证
 
 ### 特性五：常用工具库
 

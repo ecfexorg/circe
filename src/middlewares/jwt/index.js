@@ -19,7 +19,7 @@ const verifyAsync = function (accessToken, secret, options = {}) {
   })
 }
 
-function jwtVerifier (options = {}) {
+function jwt (options = {}) {
   if (!options.secret) throw new Error('missing secret')
 
   const secret = options.secret
@@ -51,10 +51,10 @@ function resolveHeader (ctx) {
   throw new Error('Authorization header format is "Authorization: Bearer token"')
 }
 
-jwtVerifier.sign = sign
-jwtVerifier.signAsync = signAsync
-jwtVerifier.verify = verify
-jwtVerifier.verifyAsync = verifyAsync
-jwtVerifier.decode = decode
+jwt.sign = sign
+jwt.signAsync = signAsync
+jwt.verify = verify
+jwt.verifyAsync = verifyAsync
+jwt.decode = decode
 
-module.exports = jwtVerifier
+module.exports = jwt

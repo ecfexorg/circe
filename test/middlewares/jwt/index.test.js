@@ -15,10 +15,10 @@ circe.use(function (ctx, next) {
   })
 })
 
-circe.use(Circe.jwtVerifier({secret}).unless('/token'))
+circe.use(Circe.jwt({secret}).unless('/token'))
 
 router.get('/token', function (ctx, next) {
-  return Circe.jwtVerifier.signAsync(user, secret).then((token) => {
+  return Circe.jwt.signAsync(user, secret).then((token) => {
     ctx.body = {token}
   })
 })
@@ -30,7 +30,7 @@ router.get('/users/loggined', function (ctx, next) {
 
 circe.route(router)
 
-describe('jwtVerifier', function () {
+describe('jwt', function () {
   it('signAsync()', function (done) {
     request(circe.listen())
       .get('/token')
