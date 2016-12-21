@@ -45,7 +45,7 @@ class Circe {
       this.use(arg.routes())
       this.use(arg.allowedMethods())
     } else if (typeof arg === 'string') {
-      const apiDir = path.resolve(path.dirname(module.parent.filename), arg)
+      const apiDir = path.resolve(Circe.__parentDir, arg)
       debug('apis directory: %s', apiDir)
       const routers = requireDir(apiDir)
       for (let key in routers) {
@@ -99,5 +99,7 @@ delegates(Circe.prototype, 'app')
   .access('request')
   .access('response')
   .access('keys')
+
+Circe.__parentDir = path.dirname(module.parent.filename)
 
 module.exports = Circe
