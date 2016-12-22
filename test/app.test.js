@@ -51,6 +51,17 @@ describe('Circe', function () {
     done()
   })
 
+  it('circe.route(BAD_ARGUMENT)', function (done) {
+    const circe = new Circe()
+    try {
+      circe.route({name: 'BAT_ARGUMENT'})
+    } catch (err) {
+      expect(err).to.be.an('error')
+      return done()
+    }
+    done(new Error('should throw an error'))
+  })
+
   it('circe.inject(Object, String)', function (done) {
     const circe = new Circe()
 
