@@ -3,7 +3,7 @@ const request = require('supertest')
 const Circe = require('../../circe')
 
 const circe = new Circe()
-circe.use(Circe.bodyParser())
+circe.use(Circe.bodyParser({multipart: true}))
 circe.use(function (ctx) {
   ctx.body = ctx.request.body
 })
@@ -55,5 +55,17 @@ describe('body parser', function () {
       .type('text')
       .send('text data')
       .expect(200, 'text data', done)
+  })
+
+  it('multipart', function (done) {
+    request(circe.listen())
+      .post('/')
+      .type('text')
+      .field('username', 'harrie')
+      .field('age', 18)
+      .field('hobby', 'paining')
+      .field('hobby', 'typing')
+      .field('hobby', 'walking')
+      .expect(200, {fields: {username: 'harrie', age: 18, hobby: ['paining', 'typing', 'walking']}, files: {}}, done)
   })
 })
