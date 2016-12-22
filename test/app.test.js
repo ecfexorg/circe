@@ -81,4 +81,11 @@ describe('Circe', function () {
     expect(circe.context.b).to.equal(2)
     done()
   })
+
+  it('circe responseApis', function (done) {
+    const circe = new Circe()
+    expect(circe.context.success).to.be.a('function')
+    expect(circe.context.fail).to.be.a('function')
+    done()
+  })
 })

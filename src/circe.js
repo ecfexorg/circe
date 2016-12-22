@@ -8,6 +8,7 @@ const _ = require('lodash')
 
 const Koa = require('koa')
 const Router = require('koa-router')
+const responseApis = require('./libs/responseApis')
 
 class Circe {
   /**
@@ -18,6 +19,8 @@ class Circe {
   constructor () {
     this.app = new Koa()
     this.server = http.createServer(this.app.callback())
+    this.context.success = responseApis.success
+    this.context.fail = responseApis.fail
   }
 
   /**
@@ -75,11 +78,11 @@ class Circe {
       const services = arg1
       const prefix = typeof arg2 === 'string' ? arg2.trim() : ''
       for (let name in services) {
-        debug('inject %j to context.%s', services[name], prefix + name)
+        debug('inject [%s] to context.%s', typeof services[name], prefix + name)
         _.set(this.app.context, prefix + name, services[name])
       }
     } else if (arg1 && typeof arg1 === 'string' && arg2) {
-      debug('inject %j to context.%s', arg2, arg1)
+      debug('inject [%s] to context.%s', typeof arg2, arg1)
       _.set(this.app.context, arg1, arg2)
     }
     return this
