@@ -35,20 +35,4 @@ function fail (msg, code) {
   return (this.response.body = packBody(false, msg, code))
 }
 
-/**
- * 返回中间件
- *
- * @returns middleware
- */
-function responseApis () {
-  return function middleware (ctx, next) {
-    ctx.context.success = success
-    ctx.context.fail = fail
-    return next()
-  }
-}
-
-responseApis.success = success
-responseApis.fail = fail
-
-module.exports = responseApis
+module.exports = {success, fail}
