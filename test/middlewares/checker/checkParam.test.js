@@ -11,8 +11,7 @@ router.get('/checkParam/:userid', Circe.checker({
   ctx.body = {success: true, userid}
 })
 
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.route(router)
 
 describe('checkParam', function (done) {
   it('respond 200', function (done) {

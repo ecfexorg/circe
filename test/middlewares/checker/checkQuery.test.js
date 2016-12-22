@@ -13,8 +13,7 @@ router.get('/checkQuery', Circe.checker({
   ctx.body = {success: true, sortBy, skip, limit}
 })
 
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.route(router)
 
 describe('checkQuery', function (done) {
   it('respond 200', function (done) {

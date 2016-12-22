@@ -9,8 +9,7 @@ router.get('/checkValue', function (ctx, next) {
   ctx.body = {success: true, test}
 })
 
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.route(router)
 
 describe('checkValue', function (done) {
   it('respond 200', function (done) {

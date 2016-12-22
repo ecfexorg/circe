@@ -13,8 +13,7 @@ router.get('/checkBody', Circe.checker({
   ctx.body = {success: true, data}
 })
 
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.route(router)
 
 describe('checkBody', function (done) {
   it('respond 200', function (done) {

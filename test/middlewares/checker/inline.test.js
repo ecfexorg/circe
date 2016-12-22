@@ -12,8 +12,7 @@ router.get('/checkQuery', function (ctx, next) {
   ctx.body = {success: true, sortBy, skip, limit}
 })
 
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.route(router)
 
 describe('inline checkQuery', function (done) {
   it('respond 200', function (done) {
