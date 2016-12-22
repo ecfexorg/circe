@@ -30,6 +30,7 @@ function jwt (options = {}) {
     return verifyAsync(accessToken, secret).then((decodedToken) => {
       ctx.state = ctx.state || {}
       ctx.state[key] = decodedToken
+      ctx.state.jwtToken = accessToken
     }).catch((err) => {
       ctx.throw(401, `Invalid token - ${err.message}`)
     }).then(() => next())
