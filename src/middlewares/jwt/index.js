@@ -26,14 +26,16 @@ function jwt (options = {}) {
   const key = options.key || 'user'
 
   function middleware (ctx, next) {
-    const accessToken = resolveHeader(ctx)
-    return verifyAsync(accessToken, secret).then((decodedToken) => {
+    return resolveHeader(ctx).then((accessToken) => {
       ctx.state = ctx.state || {}
-      ctx.state[key] = decodedToken
       ctx.state.jwtToken = accessToken
-    }).catch((err) => {
+      return verifyAsync(accessToken, secret)
+    }).then((decodedToken) => {
+      ctx.state[key] = decodedToken
+      return next()
+    }, (err) => {
       ctx.throw(401, `Invalid token - ${err.message}`)
-    }).then(() => next())
+    })
   }
 
   middleware.unless = unless
@@ -41,15 +43,20 @@ function jwt (options = {}) {
 }
 
 function resolveHeader (ctx) {
-  if (!ctx.header || !ctx.header.authorization) {
-    throw new Error('can\'t find authorization header')
-  }
-  const parts = ctx.header.authorization.split(' ')
-  if (parts.length === 2) {
-    const [scheme, credentials] = parts
-    if (/^Bearer$/i.test(scheme)) return credentials
-  }
-  throw new Error('Authorization header format is "Authorization: Bearer token"')
+  return new Promise((resolve, reject) => {
+    if (!ctx.header || !ctx.header.authorization) {
+      reject(new Error('can\'t find authorization header'))
+    } else {
+      const parts = ctx.header.authorization.split(' ')
+      if (parts.length === 2) {
+        const [scheme, credentials] = parts
+        if (/^Bearer$/i.test(scheme)) resolve(credentials)
+        else reject(new Error('Authorization header format is "Authorization: Bearer token"'))
+      } else {
+        reject(new Error('Authorization header format is "Authorization: Bearer token"'))
+      }
+    }
+  })
 }
 
 jwt.sign = sign
