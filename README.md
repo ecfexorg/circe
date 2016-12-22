@@ -137,12 +137,13 @@ circe.use(asynct (ctx, next) => {
 
 内置的中间件全都绑定在`Circe`类上，更多的中间件正在丰富中，致力于实现项目的单一依赖，不需要再去npm或github上需找和对比需要的中间件。
 
-- [Circe.Router](https://github.com/alexmingoia/koa-router/tree/master) 引用koa-router@7
+- [Circe.Router](https://github.com/alexmingoia/koa-router/tree/master) 引用`koa-router@7`
 - [Circe.bodyParser](./src/middlewares/bodyParser/README.md) body解析器
 - [Circe.checker](./src/middlewares/checker/README.md) 参数验证器
 - [Circe.jwt](./src/middlewares/jwt/README.md) jwt验证
 - [Circe.unless](./src/middlewares/unless/README.md) 中间件过滤
 - [Circe.cors](./src/middlewares/cors/README.md) 跨域请求
+- [Circe.logger](https://github.com/PabloSichert/concurrency-logger) 引用`concurrency-logger`
 - [Circe.responseApis](./src/middlewares/responseApis) 拓展response api，添加`ctx.success`和`ctx.fail`函数
 
 ### 特性五：常用工具库
