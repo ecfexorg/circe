@@ -144,8 +144,10 @@ circe.use(asynct (ctx, next) => {
 - [Circe.unless](./src/middlewares/unless/README.md) 中间件过滤
 - [Circe.cors](./src/middlewares/cors/README.md) 跨域请求
 - [Circe.logger](https://github.com/PabloSichert/concurrency-logger) 引用`concurrency-logger`
-- [Circe.responseApis](./src/middlewares/responseApis) 拓展response api，添加`ctx.success`和`ctx.fail`函数
 
-### 特性五：常用工具库
+### 特性五：拓展的context
 
-~~内容待补充~~
+除了koa自带的context方法和属性，circe对context进行了拓展：
+
+- ctx.success(data[, code]) 成功响应，详细文档查看[responseApis](./src/libs/responseApis/README.md)
+- ctx.fail(msg[, code]) 错误响应，详细文档查看[responseApis](./src/libs/responseApis/README.md)

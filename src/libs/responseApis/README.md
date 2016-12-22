@@ -2,12 +2,11 @@
 
 ## 使用方法
 
+> success和fail方法已被circe自动注入，可以直接使用
+
 ```javascript
 const Circe = require('circe')
 const circe = new Circe()
-
-// 添加中间件
-circe.use(Circe.responseApis())
 
 rouer.get('/users'), async (ctx) => {
   if (ctx.params.success) {
