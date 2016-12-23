@@ -2,6 +2,7 @@ const expect = require('chai').expect
 const Circe = require('./circe')
 const Koa = require('koa')
 const http = require('http')
+const request = require('supertest')
 
 describe('Circe', function () {
   it('listen', function (done) {
@@ -48,7 +49,16 @@ describe('Circe', function () {
   it('circe.route(String)', function (done) {
     const circe = new Circe()
     circe.route('./apis')
-    done()
+    const req = request(circe.listen())
+    req
+      .get('/users')
+      .expect(200, {success: true})
+      .end((err) => {
+        if (err) return done(err)
+        req
+          .get('/articles')
+          .expect(200, {success: true}, done)
+      })
   })
 
   it('circe.route(BAD_ARGUMENT)', function (done) {

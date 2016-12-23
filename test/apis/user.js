@@ -2,4 +2,8 @@ const Circe = require('../../src/circe')
 
 const router = new Circe.Router()
 
-module.exports = router
+router.get('/users', function (ctx) {
+  ctx.body = {success: true}
+})
+
+module.exports.default = router
