@@ -53,9 +53,13 @@ class Circe {
       const routers = requireDir(apiDir)
       for (let key in routers) {
         let router = routers[key]
+        if (!router) continue
         if (router instanceof Router) {
           this.use(router.routes())
           this.use(router.allowedMethods())
+        } else if (router.default && router.default instanceof Router) {
+          this.use(router.default.routes())
+          this.use(router.default.allowedMethods())
         }
       }
     } else {
