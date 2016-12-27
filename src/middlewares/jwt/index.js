@@ -34,7 +34,8 @@ function jwt (options = {}) {
       ctx.state[key] = decodedToken
       return next()
     }, (err) => {
-      ctx.throw(401, `Invalid token - ${err.message}`)
+      ctx.status = 401
+      ctx.body = `Invalid token - ${err.message}`
     })
   }
 
