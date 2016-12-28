@@ -55,10 +55,11 @@ module.exports = function cors (options = {}) {
         ctx.set('Access-Control-Allow-Credentials', 'true')
       }
 
-      if (options.allowHeaders === undefined) {
-        options.allowHeaders = ctx.get('Access-Control-Request-Headers')
+      let allowHeaders = options.allowHeaders
+      if (allowHeaders === undefined) {
+        allowHeaders = ctx.get('Access-Control-Request-Headers')
       }
-      ctx.set('Access-Control-Allow-Headers', options.allowHeaders)
+      ctx.set('Access-Control-Allow-Headers', allowHeaders)
 
       ctx.status = 204
     } else {
