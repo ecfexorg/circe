@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
+const debug = require('debug')('circe:config')
 const requireDir = require('require-dir')
-const env = process.env.NODE_ENV || 'development'
 const _ = require('lodash')
 
 function isDirectory (dir) {
@@ -23,6 +23,8 @@ function requirePath (p) {
 }
 
 exports.from = function (dir) {
+  debug(process.env.NODE_ENV)
+  const env = process.env.NODE_ENV || 'development'
   if (!dir || !isDirectory(dir)) throw new Error('Directory must be specified.')
 
   const defaultPath = path.join(dir, 'default')
