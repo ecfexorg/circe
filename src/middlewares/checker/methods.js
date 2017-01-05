@@ -76,6 +76,7 @@ module.exports = exports = {
   'toNumber' (defaultVal) {
     try {
       this.val = Number(this.val)
+      if (isNaN(this.val)) throw new Error()
     } catch (error) {
       if (defaultVal === undefined) this.throw(error.message)
       else this.val = defaultVal

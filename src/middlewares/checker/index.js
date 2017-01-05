@@ -27,7 +27,7 @@ function checkBody (key, required) {
 function checker (handlers) {
   const checkerMiddleware = function (ctx, next) {
     const validators = ctx.validators = {}
-    const vals = ctx.vals = {}
+    const vals = ctx.vals = ctx.vals || {}
 
     if (handlers !== undefined) {
       for (let key in handlers) {
