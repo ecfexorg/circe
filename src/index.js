@@ -9,6 +9,7 @@ const jwt = require('./middlewares/jwt')
 const unless = require('./middlewares/unless')
 const cors = require('./middlewares/cors')
 const logger = require('concurrency-logger').default
+const config = require('./libs/config')
 
 Circe.prototype.Circe = Circe
 Circe.__parentDir = path.dirname(module.parent.filename)
@@ -20,6 +21,7 @@ Circe.jwt = jwt
 Circe.unless = unless
 Circe.cors = cors
 Circe.logger = logger
+Circe.config = config
 
 module.exports = Circe
 module.exports.default = Circe
