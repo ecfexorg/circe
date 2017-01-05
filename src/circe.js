@@ -48,9 +48,10 @@ class Circe {
       this.use(arg.routes())
       this.use(arg.allowedMethods())
     } else if (typeof arg === 'string') {
-      const apiDir = path.resolve(Circe.__parentDir, arg)
-      debug('apis directory: %s', apiDir)
-      const routers = requireDir(apiDir)
+      let dir = arg
+      if (dir.startsWith('.')) dir = path.resolve(Circe.__parentDir, arg)
+      debug('apis directory: %s', dir)
+      const routers = requireDir(dir)
       for (let key in routers) {
         let router = routers[key]
         if (!router) continue
