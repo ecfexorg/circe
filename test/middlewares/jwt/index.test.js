@@ -46,14 +46,14 @@ describe('jwt', function () {
   it('can\'t found authorization header', function (done) {
     request(circe.listen())
       .get('/users/loggined')
-      .expect(500, 'Invalid token - can\'t find authorization header', done)
+      .expect(401, 'Invalid token - can\'t find authorization header', done)
   })
 
   it('bad authorization header format', function (done) {
     request(circe.listen())
       .get('/users/loggined')
       .set('authorization', `BADDDDDDDDDDDDBearer ${token}`)
-      .expect(500, 'Invalid token - Authorization header format is "Authorization: Bearer token"', done)
+      .expect(401, 'Invalid token - Authorization header format is "Authorization: Bearer token"', done)
   })
 
   it('success', function (done) {
