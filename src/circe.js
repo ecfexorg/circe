@@ -43,29 +43,34 @@ class Circe {
    *
    * @api public
    */
-  route (arg) {
+  route (arg, options) {
+    options = options || {}
+    const routers = []
     if (arg instanceof Router) {
-      this.use(arg.routes())
-      this.use(arg.allowedMethods())
+      routers.push(arg)
     } else if (typeof arg === 'string') {
       let dir = arg
       if (dir.startsWith('.')) dir = path.resolve(Circe.__parentDir, arg)
       debug('apis directory: %s', dir)
-      const routers = requireDir(dir)
-      for (let key in routers) {
-        let router = routers[key]
+      const modules = requireDir(dir)
+      for (let key in modules) {
+        let router = modules[key]
         if (!router) continue
-        if (router instanceof Router) {
-          this.use(router.routes())
-          this.use(router.allowedMethods())
-        } else if (router.default && router.default instanceof Router) {
-          this.use(router.default.routes())
-          this.use(router.default.allowedMethods())
-        }
+        if (router instanceof Router) routers.push(router)
+        else if (router.default instanceof Router) routers.push(router.default)
       }
     } else {
       throw new Error('Can not load routes from: ' + arg)
     }
+
+    routers.forEach((router) => {
+      if (typeof options.mount === 'string') {
+        router.prefix(options.mount)
+      }
+      this.use(router.routes())
+      this.use(router.allowedMethods())
+    })
+
     return this
   }
 

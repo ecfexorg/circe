@@ -61,6 +61,21 @@ describe('Circe', function () {
       })
   })
 
+  it('circe.route(String, {mount})', function (done) {
+    const circe = new Circe()
+    circe.route('./apis', {mount: '/v1'})
+    const req = request(circe.listen())
+    req
+      .get('/v1/users')
+      .expect(200, {success: true})
+      .end((err) => {
+        if (err) return done(err)
+        req
+          .get('/v1/articles')
+          .expect(200, {success: true}, done)
+      })
+  })
+
   it('circe.route(BAD_ARGUMENT)', function (done) {
     const circe = new Circe()
     try {
