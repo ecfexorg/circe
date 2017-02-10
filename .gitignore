@@ -11,6 +11,7 @@ pids
 logs
 results
 .nyc_output
+.vscode
 
 npm-debug.*
 node_modules
