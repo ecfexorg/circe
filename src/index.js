@@ -8,6 +8,7 @@ const checker = require('./middlewares/checker')
 const jwt = require('./middlewares/jwt')
 const unless = require('./middlewares/unless')
 const cors = require('./middlewares/cors')
+const onError = require('./middlewares/onError')
 const logger = require('concurrency-logger').default
 const config = require('./libs/config')
 
@@ -20,6 +21,7 @@ Circe.checker = checker
 Circe.jwt = jwt
 Circe.unless = unless
 Circe.cors = cors
+Circe.onError = onError
 Circe.logger = logger
 Circe.config = config
 
