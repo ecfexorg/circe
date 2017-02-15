@@ -24,14 +24,14 @@ function requirePath (p) {
 
 exports.from = function (dir) {
   debug(process.env.NODE_ENV)
-  const env = process.env.NODE_ENV || 'development'
+  const NODE_ENV = process.env.NODE_ENV || 'development'
   if (!dir || !isDirectory(dir)) throw new Error('Directory must be specified.')
 
   const defaultPath = path.join(dir, 'default')
-  const envPath = path.join(dir, env)
+  const envPath = path.join(dir, NODE_ENV)
 
   const defaultConfig = requirePath(defaultPath)
   const envConfig = requirePath(envPath)
 
-  return _.defaultsDeep(envConfig, defaultConfig, {})
+  return _.defaultsDeep({NODE_ENV}, envConfig, defaultConfig)
 }
