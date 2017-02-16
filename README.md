@@ -117,19 +117,20 @@ const Circe = require('circe')
 const circe = new Circe()
 
 circe.inject({a: 1, b: 2})
-circe.inject({c: 3, d: 4}, '$')
-circe.inject({e: 5, f: 6}, 'test.')
-circe.inject({g: 7, h: 8}, 'test.$')
+circe.inject({$c: 3, $d: 4})
+circe.inject('foo.bar', {e: 5, f: 6})
+circe.inject('g', 7)
+circe.inject('h', function () {})
 
 circe.use(asynct (ctx, next) => {
   ctx.a // 1
   ctx.b // 2
   ctx.$c // 3
   ctx.$d // 4
-  ctx.test.e // 5
-  ctx.test.f // 6
-  ctx.test.$g // 7
-  ctx.test.$h // 8
+  ctx.foo.bar.e // 5
+  ctx.foo.bar.f // 6
+  ctx.g // 7
+  ctx.h // [function]
 })
 ```
 

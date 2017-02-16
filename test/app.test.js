@@ -94,17 +94,10 @@ describe('Circe', function () {
     expect(circe.context.a).to.equal(1)
     expect(circe.context.b).to.equal(2)
 
-    circe.inject({a: 1, b: 2}, '$')
+    circe.inject({$a: 1, $b: 2})
     expect(circe.context.$a).to.equal(1)
     expect(circe.context.$b).to.equal(2)
 
-    circe.inject({a: 1, b: 2}, 'foo.bar.')
-    expect(circe.context.foo.bar.a).to.equal(1)
-    expect(circe.context.foo.bar.b).to.equal(2)
-
-    circe.inject({a: 1, b: 2}, 'foo.bar.$')
-    expect(circe.context.foo.bar.$a).to.equal(1)
-    expect(circe.context.foo.bar.$b).to.equal(2)
     done()
   })
 
@@ -113,8 +106,13 @@ describe('Circe', function () {
 
     circe.inject('a', 1)
     circe.inject('b', 2)
+
     expect(circe.context.a).to.equal(1)
     expect(circe.context.b).to.equal(2)
+
+    circe.inject('foo.bar', { a: 1, b: 2 })
+    expect(circe.context.foo.bar.a).to.equal(1)
+    expect(circe.context.foo.bar.b).to.equal(2)
     done()
   })
 })

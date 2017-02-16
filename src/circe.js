@@ -78,7 +78,6 @@ class Circe {
    * Pass variables into app.context
    *
    * @param {Object} variables
-   * @param {String} prefix
    * @returns instance
    *
    * @api public
@@ -86,10 +85,9 @@ class Circe {
   inject (arg1, arg2) {
     if (typeof arg1 === 'object') {
       const services = arg1
-      const prefix = typeof arg2 === 'string' ? arg2.trim() : ''
       for (let name in services) {
-        debug('inject [%s] to context.%s', typeof services[name], prefix + name)
-        _.set(this.app.context, prefix + name, services[name])
+        debug('inject [%s] to context.%s', typeof services[name], name)
+        _.set(this.app.context, name, services[name])
       }
     } else if (arg1 && typeof arg1 === 'string' && arg2) {
       debug('inject [%s] to context.%s', typeof arg2, arg1)
