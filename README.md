@@ -10,15 +10,15 @@
 >
 > 中文：瑟茜[sè xī]
 
-## 安装
+## 一、安装
 
 ```bash
-npm install circe --save
+$ npm install circe --save
 ```
 
-## 特性列表
+## 二、入门
 
-### 特性一：跟Koa一模一样的用法
+基于`Koa2`开发，保留与之相同的用法，所有api和中间件均兼容
 
 ```javascript
 // Koa
@@ -49,7 +49,9 @@ Koa实例对象的属性都有（具体的作用请查看[Koa官方文档](http:
 - response
 - keys
 
-### 特性二：可获得Koa实例和http server实例
+## 三、进阶
+
+### 1. 可获得Koa实例和http server实例
 
 ```javascript
 const Circe = require('circe')
@@ -62,7 +64,7 @@ console.log(circe.app)
 console.log(circe.server)
 ```
 
-### 特性三：更多的实例方法
+### 2. 更多的实例方法
 
 **circe.route(Router)** 注册路由，传入路由对象
 
@@ -76,7 +78,7 @@ router.post('/user', async () => { /* 中间件 */ })
 circe.route(router)
 ```
 
-**circe.route(Router)** 注册路由，传入路由目录
+**circe.route(String)** 注册路由，传入路由目录
 
 ```javascript
 //////// apis/user.js ////////////////////
@@ -89,10 +91,11 @@ router.post('/user', async () => { /* 中间件 */ })
 module.exports = router
 
 //////// app.js ////////////////////
+const path = require('path')
 const Circe = require('circe')
 
 // 将导入apis目录下的所有路由文件
-circe.route('./apis')
+circe.route(path.resolve(__dirname, 'apis'))
 ```
 
 **circe.inject(key, value)** 注入内容到context，传入键和值参数
@@ -103,14 +106,17 @@ const circe = new Circe()
 
 circe.inject('$hello', function () { console.log('hello') })
 circe.inject('$a.b', 'test' })
+circe.inject('foo.bar', {a: 1, b: 2})
 
 circe.use(asynct (ctx, next) => {
   ctx.$hello() // 打印'hello'
   ctx.$a.b // 'test'
+  ctx.foo.bar.a // 1
+  ctx.foo.bar.b // 2
 })
 ```
 
-**circe.inject(key, value)** 注入内容到context，传入对象和前缀
+**circe.inject(object)** 注入内容到context，传入对象和前缀
 
 ```javascript
 const Circe = require('circe')
@@ -118,25 +124,18 @@ const circe = new Circe()
 
 circe.inject({a: 1, b: 2})
 circe.inject({$c: 3, $d: 4})
-circe.inject('foo.bar', {e: 5, f: 6})
-circe.inject('g', 7)
-circe.inject('h', function () {})
 
 circe.use(asynct (ctx, next) => {
   ctx.a // 1
   ctx.b // 2
   ctx.$c // 3
   ctx.$d // 4
-  ctx.foo.bar.e // 5
-  ctx.foo.bar.f // 6
-  ctx.g // 7
-  ctx.h // [function]
 })
 ```
 
-### 特性四：中间件全家桶
+### 3. 内置中间件全家桶
 
-内置的中间件全都绑定在`Circe`类上，更多的中间件正在丰富中，致力于实现项目的单一依赖，不需要再去npm或github上需找和对比需要的中间件。
+内置的中间件全都绑定在`Circe`类上，不需要再去npm或github上需找和对比需要的中间件，更多的中间件正在丰富中。
 
 - [Circe.Router](https://github.com/alexmingoia/koa-router/tree/master) 引用`koa-router@7`
 - [Circe.bodyParser](./src/middlewares/bodyParser/README.md) body解析器
@@ -145,8 +144,9 @@ circe.use(asynct (ctx, next) => {
 - [Circe.unless](./src/middlewares/unless/README.md) 中间件过滤
 - [Circe.cors](./src/middlewares/cors/README.md) 跨域请求
 - [Circe.logger](https://github.com/PabloSichert/concurrency-logger) 引用`concurrency-logger`
+- [Circe.onError](./src/middlewares/onError/README.md) 拦截500错误
 
-### 特性五：拓展的context
+### 4. 拓展的context
 
 除了koa自带的context方法和属性，circe对context进行了拓展：
 
