@@ -26,6 +26,13 @@ circe.use(Circe.checker.init({
   getBody: (ctx) => ctx.body
 }))
 
+const testRouter = new Circe.Router()
+
+circe.route(testRouter) 
+circe.route(testRouter, {mount: '/v1'}) 
+circe.route(__dirname + '/apis')
+circe.route(__dirname + '/apis', {mount: '/v2'})
+
 const router = new Circe.Router()
 
 router.get('', async (ctx: Circe.IContext) => {

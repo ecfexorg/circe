@@ -30,8 +30,8 @@ declare class Circe extends Koa{
 
   constructor()
 
-  route (router: KoaRouter): void
-  route (path: string): void
+  route (router: KoaRouter, options?: {mount?: string}): void
+  route (path: string, options?: {mount?: string}): void
   inject (key: string, value:any): void
   inject (pairs: Object): void
 }
