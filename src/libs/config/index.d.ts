@@ -1,1 +1,1 @@
-export function from (dir: String): Object
+export function from (dir: String): any
