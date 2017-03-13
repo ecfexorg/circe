@@ -1,4 +1,4 @@
-import Circe from '.'
+import * as Circe from '.'
 
 const config: Object = Circe.config.from('someDir')
 

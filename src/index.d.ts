@@ -55,4 +55,4 @@ declare namespace Circe {
   }
 }
 
-export default Circe
+export = Circe
