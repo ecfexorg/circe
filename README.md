@@ -152,3 +152,7 @@ circe.use(asynct (ctx, next) => {
 
 - ctx.success(data[, code]) 成功响应，详细文档查看[responseApis](./src/libs/responseApis/README.md)
 - ctx.fail(msg[, code]) 错误响应，详细文档查看[responseApis](./src/libs/responseApis/README.md)
+
+### 5. 支持typescript
+
+已添加对`typescript`的声明，详情请看[index.d.ts](./src/index.d.ts)
