@@ -30,7 +30,7 @@ module.exports = function (options = {}) {
 
     const methods = ensureArray(options.method)
     if (methods) {
-      skip = skip || methods.includes(ctx.methods)
+      skip = skip || methods.includes(ctx.method)
     }
 
     if (skip) return next()
