@@ -49,7 +49,7 @@ declare namespace checker {
 
     [propName: string]: any
 
-    static addMethod(name: string, method: (tip: string) => Validator): void
+    static addMethod(name: string, method: (...args) => Validator): void
   }
 
   export class ValidationError extends Error{
