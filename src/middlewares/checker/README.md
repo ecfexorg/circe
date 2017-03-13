@@ -85,6 +85,7 @@ circe.use(Circe.checker.init(/* options参数 */))
 - toString() 转化为字符串，调用`val.toString()`
 - trim() 除去字符串两端空格，调用`val.trim()`
 - notEmpty(trim, tip) 判断是否为字符串并且不能为空字符串，第一个参数于是否去除两端空格再判断
+- match(regexp, tip) 判断字符串是否匹配指定正则表达式
 
 **自定义验证器函数**
 

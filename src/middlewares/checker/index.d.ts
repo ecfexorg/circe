@@ -45,6 +45,9 @@ declare namespace checker {
     toString(): Validator
     trim(): Validator
     notEmpty(trim, tip?: string): Validator
+    match(regExp: RegExp, tip?: string): Validator
+
+    [propName: string]: any
 
     static addMethod(name: string, method: (tip: string) => Validator): void
   }

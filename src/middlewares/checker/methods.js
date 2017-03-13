@@ -118,5 +118,10 @@ module.exports = exports = {
     if (trim) this.val = this.val.trim()
     this.neq('', tip)
     return this
+  },
+  'match' (regExp, tip) {
+    this.is('string')
+    this.throwIfNot(regExp.test(this.val), tip)
+    return this
   }
 }
