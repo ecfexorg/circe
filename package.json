@@ -22,9 +22,6 @@
   "author": "hwhao",
   "license": "MIT",
   "devDependencies": {
-    "@types/koa": "^2.0.39",
-    "@types/koa-router": "^7.0.21",
-    "@types/node": "^7.0.8",
     "chai": "^3.5.0",
     "cross-env": "^3.2.3",
     "eslint": "^3.17.1",
@@ -36,6 +33,9 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "@types/koa": "^2.0.39",
+    "@types/koa-router": "^7.0.21",
+    "@types/node": "^7.0.8",
     "better-assert": "^1.0.2",
     "co-body": "^5.0.2",
     "concurrency-logger": "^2.0.1",
