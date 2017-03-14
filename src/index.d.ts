@@ -9,9 +9,7 @@
 
 /// <reference types="node" />
 
-import {IncomingMessage, ServerResponse, Server} from 'http'
-import {Socket, ListenOptions} from 'net'
-import * as Keygrip from 'keygrip'
+import {Server} from 'http'
 import * as Koa from 'koa'
 import * as KoaRouter from 'koa-router'
 
