@@ -153,6 +153,56 @@ circe.use(asynct (ctx, next) => {
 - ctx.success(data[, code]) 成功响应，详细文档查看[responseApis](./src/libs/responseApis/README.md)
 - ctx.fail(msg[, code]) 错误响应，详细文档查看[responseApis](./src/libs/responseApis/README.md)
 
-### 5. 支持typescript
+### 5. 实用工具库
+
+#### config 配置文件管理
+
+```javascript
+const Circe = require('circe')
+// 根据环境变量，读取目录下配置文件，支持多级目录
+const config = Circe.config.from(__dirname + '/config')
+```
+
+**示例１：**
+
+- config
+  - default.js
+  - development.js
+  - production.js
+
+如有以上目录结构，且当前运行环境为`development`，将会整合`default.js`和`development.js`作为导出对象。
+
+**示例２**
+
+- config
+  - default
+    - app.js
+  - development
+    - app.js
+    - db.js
+  - production
+    - app.js
+    - db.js
+    - other.js
+
+如有以上目录结构，且当前运行环境为`production`，将会整合`default`、`production`目录下所有文件作为导出对象。
+
+导出对象结构为：
+
+```json
+{
+  app: {...},
+  db: {...},
+  other: {...}
+}
+```
+
+### 6. 支持typescript
 
 已添加对`typescript`的声明，详情请看[index.d.ts](./src/index.d.ts)
+
+```javascript
+import * as Circe from 'circe'
+
+const circe = new Circe()
+```
