@@ -1,7 +1,7 @@
 {
   "name": "circe",
-  "version": "1.0.7-beta.2",
-  "description": "> A framework based on Koa v2.",
+  "version": "1.0.7",
+  "description": "A framework based on Koa v2.",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "directories": {
