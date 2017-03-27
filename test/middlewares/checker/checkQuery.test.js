@@ -5,9 +5,9 @@ const app = require('./app')
 const router = new Circe.Router()
 
 router.get('/checkQuery', Circe.checker({
-  sortBy: (ctx) => ctx.checkQuery('sortBy').required(),
-  skip: (ctx) => ctx.checkQuery('skip').defaultTo(0),
-  limit: (ctx) => ctx.checkQuery('limit').defaultTo(10)
+  sortBy: (ctx) => ctx.checkQuery('sortBy'),
+  skip: (ctx) => ctx.checkQuery('skip', false).defaultTo(0),
+  limit: (ctx) => ctx.checkQuery('limit', false).defaultTo(10)
 }), function (ctx, next) {
   const {sortBy, skip, limit} = ctx.vals
   ctx.body = {success: true, sortBy, skip, limit}

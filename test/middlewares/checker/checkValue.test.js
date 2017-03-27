@@ -5,7 +5,7 @@ const app = require('./app')
 const router = new Circe.Router()
 
 router.get('/checkValue', function (ctx, next) {
-  const test = ctx.checkValue('    test    ', true).is('string').trim().val
+  const test = ctx.checkValue('    test    ').is('string').trim().val
   ctx.body = {success: true, test}
 })
 

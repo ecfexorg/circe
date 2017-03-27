@@ -5,9 +5,9 @@ const app = require('./app')
 const router = new Circe.Router()
 
 router.get('/checkBody', Circe.checker({
-  username: (ctx) => ctx.checkBody('username', true).is('string'),
-  age: (ctx) => ctx.checkBody('age', true).is('number'),
-  hobby: (ctx) => ctx.checkBody('hobby', true).is('array')
+  username: (ctx) => ctx.checkBody('username').is('string'),
+  age: (ctx) => ctx.checkBody('age').is('number'),
+  hobby: (ctx) => ctx.checkBody('hobby').is('array')
 }), function (ctx, next) {
   const data = ctx.vals
   ctx.body = {success: true, data}

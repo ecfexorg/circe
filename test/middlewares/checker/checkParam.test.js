@@ -5,7 +5,7 @@ const app = require('./app')
 const router = new Circe.Router()
 
 router.get('/checkParam/:userid', Circe.checker({
-  userid: (ctx) => ctx.checkParam('userid', true)
+  userid: (ctx) => ctx.checkParam('userid')
 }), function (ctx, next) {
   const {userid} = ctx.vals
   ctx.body = {success: true, userid}
