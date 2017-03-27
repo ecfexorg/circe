@@ -24,13 +24,13 @@ Validator.prototype.throwIfNot = function (boolVal, tip) {
 Validator.create = function (type, key, val, required) {
   const validator = new Validator(type, key, val)
   if (required === false) validator.optional()
-  else if (require !== null) validator.required()
+  else if (required !== null) validator.required()
   return validator
 }
 
 Validator.addMethod = function (name, fn) {
   Validator.prototype[name] = function () {
-    if (this._optional) return this
+    if (this._optional && name !== 'defaultTo') return this
     else return fn.apply(this, arguments)
   }
 }
