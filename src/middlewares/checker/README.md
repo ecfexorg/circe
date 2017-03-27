@@ -52,9 +52,11 @@ circe.use(Circe.checker.init(/* options参数 */))
 
 > 第二个参数为可选，
 >
-> 当值为`true`时，等价于调用`ctx.checkXXXX(String).required()`
+> 当`不传值`或值为`true`时，等价于调用`ctx.checkXXXX(String).required()`
 >
 > 当值为`false`时，等价于调用`ctx.checkXXXX(String).optional()`
+>
+> 当值为`null`时，仅调用`ctx.checkXXXX(String)`
 
 **验证器属性：**
 

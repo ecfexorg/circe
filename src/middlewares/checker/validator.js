@@ -23,8 +23,8 @@ Validator.prototype.throwIfNot = function (boolVal, tip) {
 
 Validator.create = function (type, key, val, required) {
   const validator = new Validator(type, key, val)
-  if (required === true) validator.required()
-  else if (required === false) validator.optional()
+  if (required === false) validator.optional()
+  else if (require !== null) validator.required()
   return validator
 }
 
