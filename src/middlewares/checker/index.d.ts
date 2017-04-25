@@ -16,35 +16,35 @@ declare namespace checker {
   export interface ICheckerContext {
     vals: any
     validators: any
-    checkValue(value: any, required?: boolean): Validator
-    checkQuery(name: string, required?: boolean): Validator
-    checkParam(name: string, required?: boolean): Validator
-    checkBody(name: string, required?: boolean): Validator
+    checkValue(value: any, required?: boolean | null): Validator
+    checkQuery(name: string, required?: boolean | null): Validator
+    checkParam(name: string, required?: boolean | null): Validator
+    checkBody(name: string, required?: boolean | null): Validator
   }
 
   export class Validator {
     key: string
     val: any
-    is(type: string, tip?: string): Validator
+    is(type: 'string' | 'object' | 'number' | 'array' | 'date', tip?: string): Validator
     optional(): Validator
     required(tip?: string): Validator
     defaultTo(defaultVal: any): Validator
     eq(otherVal: any, tip?: string): Validator
     neq(otherVal: any, tip?: string): Validator
     toArray(): Validator
-    in(array, tip?: string): Validator
-    notIn(array, tip?: string): Validator
+    in(array: any[], tip?: string): Validator
+    notIn(array: any[], tip?: string): Validator
     uniq(): Validator
-    isLength(min, max, tip?: string): Validator
-    toNumber (defaultVal): Validator
-    gt(otherVal, tip?: string): Validator
-    gte(otherVal, tip?: string): Validator
-    lt(otherVal, tip?: string): Validator
-    lte(otherVal, tip?: string): Validator
-    inRange(min, max, tip?: string): Validator
+    isLength(min: number, max: number, tip?: string): Validator
+    toNumber (defaultVal: number): Validator
+    gt(otherVal: number, tip?: string): Validator
+    gte(otherVal: number, tip?: string): Validator
+    lt(otherVal: number, tip?: string): Validator
+    lte(otherVal: number, tip?: string): Validator
+    inRange(min: number, max: number, tip?: string): Validator
     toString(): Validator
     trim(): Validator
-    notEmpty(trim, tip?: string): Validator
+    notEmpty(trim: boolean, tip?: string): Validator
     match(regExp: RegExp, tip?: string): Validator
 
     [propName: string]: any
