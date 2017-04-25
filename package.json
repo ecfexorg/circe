@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.oschina.net/hwhao/circe.git"
+    "url": "https://github.com/ecfexorg/circe"
   },
   "keywords": [
     "node",
     "koa",
     "framework"
   ],
-  "author": "hwhao",
+  "author": "varHarrie",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",

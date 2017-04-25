@@ -209,5 +209,6 @@ const circe = new Circe()
 
 ## 模板项目
 
-[circe-template](http://git.oschina.net/hwhao/circe-template) - circe + babel
-[circe-template-ts](http://git.oschina.net/hwhao/circe-template-ts) - circe + typescript
+[circe-base](./boilerplates/circe-base) - circe + babel
+
+[circe-ts](./boilerplates/circe-ts) - circe + typescript
