@@ -1,0 +1,35 @@
+{
+  "name": "circe-template-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha --compilers ts:ts-node/register \"src/test/**/*.test.ts\"",
+    "i": "npm install --registry=https://registry.npm.taobao.org",
+    "dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "build": "rm -rf dist && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/bluebird": "^3.5.0",
+    "@types/lodash": "^4.14.55",
+    "@types/node": "^7.0.8",
+    "circe": "^1.0.7",
+    "lodash": "^4.17.4",
+    "superagent": "^3.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cross-env": "^3.2.3",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "nyc": "^10.1.2",
+    "supertest": "^3.0.0",
+    "ts-node": "^2.1.0",
+    "tslint": "^4.5.1",
+    "tslint-eslint-rules": "^3.4.0",
+    "typescript": "^2.2.1"
+  }
+}

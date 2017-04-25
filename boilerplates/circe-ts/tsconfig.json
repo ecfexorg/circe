@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "dist",
+    "sourceMap": true,
+    "allowJs": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
